@@ -4,27 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acessibilidade para Dislexia</title>
-    <!-- Importação da Fonte OpenDyslexic via CDN -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/open-dyslexic.css">
+    
+  
+    <link href="https://fonts.cdnfonts.com/css/open-dyslexic" rel="stylesheet">
     
     <style>
-       
+        @font-face {
+            font-family: 'OpenDyslexic';
+            src: url('https://cdn.jsdelivr.net/gh/antijingoist/opendyslexic@master/font/compiled/OpenDyslexic-Regular.otf') format('opentype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        
         body {
             font-family: Arial, Verdana, sans-serif;
             font-size: 18px;
-            line-height: 1.8;            /* Entrelinhas bem espaçadas */
-            letter-spacing: 0.05em;      /* Espaço entre letras adicional */
-            word-spacing: 0.12em;        /* Espaço entre palavras extra */
+            line-height: 1.8;            
+            letter-spacing: 0.05em;     
+            word-spacing: 0.12em;        
             margin: 0;
             padding: 20px;
-            background-color: #faf6ee;   /* Fundo Off-White / Creme (evita o brilho excessivo do branco) */
-            color: #222222;              /* Cinza bem escuro ao invés de preto puro */
-            text-align: left;            /* Sempre alinhado à esquerda */
+            background-color: #faf6ee;   
+            color: #222222;              
+            text-align: left;
+            transition: font-family 0.2s, background-color 0.2s;
         }
 
        
         body.fonte-dislexia {
-            font-family: 'OpenDyslexic', Arial, sans-serif;
+            font-family: 'OpenDyslexic', 'Open-Dyslexic', Arial, sans-serif !important;
         }
 
         body.modo-escuro {
@@ -46,6 +55,7 @@
             background: #2a2a2a;
         }
 
+        
         .controles {
             max-width: 750px;
             margin: 0 auto 20px auto;
@@ -72,12 +82,16 @@
             border-color: #003d80;
         }
 
-        /* Elementos textuais e Hierarquia */
+        button.ativo {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+
+       
         h1, h2 {
             color: #000000;
             margin-top: 28px;
             margin-bottom: 16px;
-            letter-spacing: normal; /* Mantém títulos legíveis */
         }
 
         body.modo-escuro h1, 
@@ -105,10 +119,10 @@
             left: 0;
             width: 100%;
             height: 35px;
-            background-color: rgba(255, 235, 59, 0.3);
+            background-color: rgba(255, 235, 59, 0.35);
             border-top: 2px solid #fbc02d;
             border-bottom: 2px solid #fbc02d;
-            pointer-events: none; /* Permite clicar através da régua */
+            pointer-events: none;
             z-index: 9999;
         }
     </style>
@@ -127,7 +141,7 @@
         <button id="alternar-regua">Ativar Régua de Leitura</button>
     </div>
 
-    <!-- Conteúdo Adaptado -->
+   
     <article>
         <h1>Inteligência Artificial na Educação</h1>
 
@@ -154,7 +168,7 @@
     </article>
 
     <script>
-      
+   
         let tamanho = 18;
         document.querySelector("#aumentar").onclick = function () {
             if (tamanho < 32) {
@@ -170,19 +184,20 @@
             }
         };
 
-       
+        
         const btnFonte = document.querySelector("#alternar-fonte");
         btnFonte.onclick = function () {
             document.body.classList.toggle("fonte-dislexia");
+            btnFonte.classList.toggle("ativo");
         };
 
-        // 3. Alternar Modo de Cores (Creme vs Escuro)
+       
         const btnCor = document.querySelector("#alternar-cor");
         btnCor.onclick = function () {
             document.body.classList.toggle("modo-escuro");
         };
 
-       
+        
         const regua = document.querySelector("#regua-leitura");
         const btnRegua = document.querySelector("#alternar-regua");
         let reguaAtiva = false;
@@ -192,13 +207,14 @@
             if (reguaAtiva) {
                 regua.style.display = "block";
                 btnRegua.textContent = "Desativar Régua";
+                btnRegua.classList.add("ativo");
             } else {
                 regua.style.display = "none";
                 btnRegua.textContent = "Ativar Régua de Leitura";
+                btnRegua.classList.remove("ativo");
             }
         };
 
-        // Move a régua conforme a posição Y do mouse
         document.onmousemove = function (e) {
             if (reguaAtiva) {
                 regua.style.top = (e.clientY - 17) + "px";
