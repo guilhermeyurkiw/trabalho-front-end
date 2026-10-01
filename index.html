@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inteligência Artificial na Educação</title>
+    <style>
+  
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        /* Container principal */
+        article {
+            max-width: 750px;
+            margin: 40px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+      
+        .controles {
+            max-width: 750px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        button {
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            border: 1px solid #0056b3;
+            background-color: #0056b3;
+            color: #ffffff;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #003d80;
+        }
+
+
+        h1, h2 {
+            color: #111;
+            margin-top: 24px;
+            margin-bottom: 16px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        ul {
+            margin-bottom: 24px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+  
+    <div class="controles">
+        <button id="aumentar">Aumentar texto</button>
+        <button id="diminuir">Diminuir texto</button>
+    </div>
+
+  
+    <article>
+        <h1>Inteligência Artificial na Educação</h1>
+
+        <p>
+            A inteligência artificial está sendo utilizada em
+            diferentes áreas da educação.
+        </p>
+
+        <h2>Principais aplicações</h2>
+
+        <ul>
+            <li>Personalização da aprendizagem;</li>
+            <li>Correção de atividades;</li>
+            <li>Apoio aos professores;</li>
+            <li>Criação de materiais educacionais.</li>
+        </ul>
+
+        <h2>Resumo</h2>
+
+        <p>
+            A IA pode apoiar estudantes e professores,
+            mas seu uso precisa ser planejado.
+        </p>
+    </article>
+
+
+    <script>
+        let tamanho = 18;
+
+        document.querySelector("#aumentar").onclick = function () {
+            tamanho += 2;
+            document.body.style.fontSize = tamanho + "px";
+        };
+
+        document.querySelector("#diminuir").onclick = function () {
+            if (tamanho > 10) { // Trava de segurança para não diminuir demais
+                tamanho -= 2;
+                document.body.style.fontSize = tamanho + "px";
+            }
+        };
+    </script>
+
+</body>
+</html>
